@@ -12,9 +12,9 @@ https://github.com/ktrnthsnr/ecommerce-retail
 * [Contribution](#contribution)
 
 ## Description
-This E-Commerce Back-End repo project demonstrates the work to setup database schema and tables, and given an already bulit frontend, also setting up the API routes and connections from the frontend to the database and server of an e-commerce website. 
+- This E-Commerce Back-End repo project demonstrates the work to setup database schema and tables, and given an already bulit frontend, also setting up the API routes and connections from the frontend to the database and server of an e-commerce website. 
 
-Given a working Express.js API, the work involves using MySQL2 and Sequelize to interact with the MySQL database. The backend work included in this process was as follows:
+- Given a working Express.js API, the work involves using MySQL2 and Sequelize to interact with the MySQL database. The backend work included in this process was as follows:
     - created the database, table schema, and seeding scripts that will be run on the MySQL shell
     - created the model associations, foreign key relationships, through join Sequelize constructions
     - added the GET routes for all tables - categories, product, and tags tested in Insomnia
