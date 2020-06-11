@@ -1,5 +1,5 @@
 -- Log into mysql  $ `mysql -u root -p`
--- To run, under the mysql command line, 
+-- To run, under the mysql command line,
 --   mysql> source ./db/schema.sql
 --   mysql> source ./db/seeds.sql
 
@@ -10,10 +10,10 @@
 INSERT INTO category (category_name)
 VALUES
   ('Shirts'),
-  ('Pants'),
-  ('Shoes'),
-  ('Socks'),
-  ('Hats');
+  ('Shorts'),
+  ('Music'),
+  ('Hats'),
+  ('Shoes');
 
 SELECT * FROM category;
 

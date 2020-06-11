@@ -10,6 +10,13 @@ class Product extends Model {}
 Product.init(
   {
     // define columns
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    }
   },
   {
     sequelize,
