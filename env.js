@@ -7,5 +7,5 @@ const connection = mysql.createConnection({
   });
 
 module.exports = {
-    password : 'UCBKata468)345',
+    password : '',
 }
