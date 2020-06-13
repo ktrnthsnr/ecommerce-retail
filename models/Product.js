@@ -17,6 +17,17 @@ Product.init(
         len: [1]
       }
     }
+    // -- SQL table template
+    // CREATE TABLE product (
+    //   id INTEGER NOT NULL AUTO_INCREMENT,
+    //   product_name VARCHAR(30) NOT NULL,
+    //   price DECIMAL NOT NULL, 
+    //   stock INTEGER NOT NULL, 
+    //   category_id INT NOT NULL,
+    //   PRIMARY KEY(id),
+    //   FOREIGN KEY(category_id)
+    //       REFERENCES category(id)
+    //   );
   },
   {
     sequelize,

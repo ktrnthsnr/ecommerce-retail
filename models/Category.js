@@ -7,13 +7,29 @@ class Category extends Model {}
 Category.init(
   {
     // define columns
-    name: {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+      validate: {
+        len: [3]
+      }
+    },
+    category_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1]
+        len: [30]
       }
     }
+
+    // -- SQL table template
+    // CREATE TABLE category (
+    //   id INTEGER NOT NULL AUTO_INCREMENT,
+    //   category_name VARCHAR(30) NOT NULL,
+    //   PRIMARY KEY(id)
+    //   );
   },
   {
     sequelize,
