@@ -1,3 +1,5 @@
+-- NOTE!!  THIS SCRIPT IS NOT USED, ONLY AVAILABLE FOR TABLE SCHEMA REFERENCE
+
 -- Log into mysql  $ `mysql -u root -p`
 -- To run, under the mysql command line, 
 --   mysql> source ./db/schema.sql

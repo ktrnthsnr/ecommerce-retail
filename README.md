@@ -15,17 +15,16 @@ https://github.com/ktrnthsnr/ecommerce-retail
 ## Description
 - Given a working Express.js API, the work for this e-commerce back-end project involves using MySQL2 and Sequelize models to interact with the MySQL database. 
 
-The server-side work included:
-    - creating the database, table schema, and `seeding` JavaScripts that will be run on the MySQL shell
-    - creating the tables' `models` js scripts, adding the foreign key relationships through join Sequelize constructions
-    - adding GET `routes` for all tables - categories, product, and tags and then test via Insomnia
-    - adding GET `routes` for single selections from each table, then test via Insomnia
-    - adding POST, PUT, DELETE `routes` (create, read, update, and delete operations) for products, category and tags using the Sequelize models, then test via Insomnia
-    - using MySQL2 and Sequelize packages to connect to the MySQL database
-    - using the dotenv package to store sensitive data in environment variables
-    - syncing Sequelize models to MySQL database and demonstrating the browser rendering content based upon the models, connecting to the backend tables via the API endpoints, viewed in the walkthrough through the Insomnia tool
-
-- Info only: How did I create the Sequelize table models? Since I think about table structure more from a traditional database DBA perspective, before creating the Sequelize models for each table, I wrote the table create scripts in TSQL to get a clearer idea on the schema structure. These table create scripts are listed within db/schema_tables.sql, but for this application to run, these TSQL scripts are not used at all, and the file is not invoked when Sequelize creates the tables. This schema_tables.sql file is merely there for reference, can be deleted if you'd like.s
+- The server-side work included:
+- `creating the database, table schema`, and `seed` JavaScripts that will be run on the MySQL shell
+- adding the Sequelize table `model` js scripts for each table
+- adding foreign key relationships through join Sequelize constructions
+- adding GET `routes` for all tables - categories, product, and tags and then test via Insomnia
+- adding GET `routes` for single selections from each table, then test via Insomnia
+- adding POST, PUT, DELETE `routes` (create, read, update, and delete operations) for products, category and tags using the Sequelize models, then test via Insomnia
+- using MySQL2 and Sequelize packages to connect to the MySQL database
+- using the dotenv package to store sensitive data in environment variables
+- syncing Sequelize models to MySQL database and demonstrating the browser rendering content based upon the models, connecting to the backend tables via the API endpoints, viewed in the walkthrough through the Insomnia tool
 
 ## Installations
 - Prereq: install VSCode, Node.js, and MySQL http://dev.mysql.com/downloads/
@@ -63,23 +62,25 @@ The server-side work included:
 
 - Create the database 
 -   mysql> `source db/schema.sql`
+- Validate database was created
+-   mysql> `show databases`
 
 - Start using the db
 -   mysql> `USE ecommerce_db;`
 
 - Create and seed the tables for testing purposes in the terminal
 -   $ `npm run seed`
+- Validate tables were created
+-  mysql>`describe category;describe product;describe product_tag;describe tag;`
+- Validate tables were populated
+-  mysql>`select * from category;select * from product;select * from product_tag;select * from tag;`
 
 - Run the application locally, to start the Express.js, sync w/Sequelize, and also create and seed the tables.
 -   $ `npm start` or $ `node server.js`
 
-- Then open your desktop's browser to http://localhost:3001/
-- ![invokeapp](./img/<insert>.jpg "Start application")
+- Validate: View all rows within the Categories table, through a sample API endpoint. Open the Insomnia debug tool, enter a GET URL, `http://localhost:3001/api/categories`
 
-- Validate: View all rows within the Categories table, through this API endpoint"
-- Open the Insomnia debug tool, enter a GET URL, `http://localhost:3001/api/categories`
-
-- A walkthrough of how the application is invoked is included here, showing how db and tables are created, seeded, and then the API endpoint is viewed for all Category table rows:
+- A walkthrough of how the application is invoked is included here, showing how the database and tables are created, rows seeded, and then validated at a route API endpoint.  The Category table is used as the example:
 https://drive.google.com/file/d/1jCFMWTOneYsJO5n4JwkTgSkcd4Nhx8xB/view
 
 ## Technology

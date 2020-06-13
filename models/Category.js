@@ -13,7 +13,7 @@ Category.init(
       autoIncrement: true,
       allowNull: false,
       validate: {
-        len: [3]
+        isNumeric: true
       }
     },
     category_name: {
@@ -23,14 +23,14 @@ Category.init(
         len: [30]
       }
     }
-
+  },
     // -- SQL table template
     // CREATE TABLE category (
     //   id INTEGER NOT NULL AUTO_INCREMENT,
     //   category_name VARCHAR(30) NOT NULL,
     //   PRIMARY KEY(id)
     //   );
-  },
+  
   {
     sequelize,
     timestamps: false,
