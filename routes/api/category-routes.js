@@ -5,18 +5,30 @@ const { Category, Product } = require('../../models');
 // =============================================================
 // ---  The `/api/categories` endpoint
 
-router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
-  // res.json("hello"); // router test  
-  
-  Category.findAll({}).then(dbCategory => {
-    console.log(dbCategory);
-    res.json(dbCategory);
-  });
-});
+// --------------------- working test ---------------------  //
+        // router.get('/', (req, res) => {
+        //   // find all categories
+        //   // res.json("hello"); // router test    
+        //   Category.findAll({}).then(dbCategory => {
+        //     console.log(dbCategory);
+        //     res.json(dbCategory);
+        //   });
+        // });
+// --------------------- ---------------------  //
 
-router.get('/api/category/:id', (req, res) => {
+// find all categories, including its associated Products
+// -- with foreign key contraints
+router.get('/', (req, res) => {
+    Category.findAll({
+      include: {model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}
+    }).then(dbCategory => {
+      // console.log(dbCategory);
+      res.json(dbCategory);
+    });
+  });
+
+
+router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   Category.findOne({
@@ -28,7 +40,7 @@ router.get('/api/category/:id', (req, res) => {
   });
 });
 
-router.post('/api/Category', (req, res) => {
+router.post('/', (req, res) => {
   // create a new category
   /* req.body should look like this...
     {
@@ -45,7 +57,7 @@ router.post('/api/Category', (req, res) => {
   });
 });
 
-router.put('/api/Category/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Category.update(
     {
@@ -64,7 +76,7 @@ router.put('/api/Category/:id', (req, res) => {
 });
 
 
-router.delete('/api/Category/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
     where: {

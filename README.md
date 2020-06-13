@@ -1,5 +1,5 @@
 # E-Commerce Back-End
-This exercise focuses on backend and middleware: Sequelize models and MySQL2 to connect to Express.js API routes and MySQL database content.
+This exercise focuses on backend and middleware: Sequelize object relational mapping (ORM)models and MySQL2 to connect to Express.js API routes and MySQL database content.
 
 ## GitHub repository
 https://github.com/ktrnthsnr/ecommerce-retail
@@ -14,22 +14,23 @@ https://github.com/ktrnthsnr/ecommerce-retail
 
 ## Description
 - Given a working Express.js API, the work for this e-commerce back-end project involves using MySQL2 and Sequelize models to interact with the MySQL database. 
+- Once invoking the app, `npm start`, Node.js will start the Express.js server and Sequelize will sync with the MySQL database, and create and seed the tables.  
+- A walkthrough link under Usage below will demonstrate the API endpoints for each of the routes created. The Insomnia browser will render the JSON content based upon the Sequelize models, connecting to the backend tables via the API endpoints.
 
 - The server-side work included:
-- `creating the database, table schema`, and `seed` JavaScripts that will be run on the MySQL shell
-- adding the Sequelize table `model` js scripts for each table
-- adding foreign key relationships through join Sequelize constructions
-- adding GET `routes` for all tables - categories, product, and tags and then test via Insomnia
-- adding GET `routes` for single selections from each table, then test via Insomnia
-- adding POST, PUT, DELETE `routes` (create, read, update, and delete operations) for products, category and tags using the Sequelize models, then test via Insomnia
-- using MySQL2 and Sequelize packages to connect to the MySQL database
-- using the dotenv package to store sensitive data in environment variables
-- syncing Sequelize models to MySQL database and demonstrating the browser rendering content based upon the models, connecting to the backend tables via the API endpoints, viewed in the walkthrough through the Insomnia tool
+- updated js config to sync Sequelize models to the database, when Express server is instantiated
+- created API routes for various query selections to the Express server
+- routes included GET, POST, PUT, DELETE routes to select all and single selections from the  category, product, and tags tables, then tested the API endpoints via Insomnia
+- configured dotenv to store sensitive db connection data in environment variables
+- utilized Sequelize and mysql2 to connect the Express.js to the MySQL database
+- added a create database script
+- added the Sequelize model js scripts that build each table 
+- added foreign key relationships through Sequelize reference constructions
+
 
 ## Installations
-- Prereq: install VSCode, Node.js, and MySQL http://dev.mysql.com/downloads/
-- After cloning the GitHub repo to your local drive, run the following in the VSCode command-line terminal. 
-- First CD into the /Develop folder, `$ cd Develop` then run the following:
+- Prereq: install VSCode, Node.js `nodejs -v`, and MySQL http://dev.mysql.com/downloads/
+- After cloning the GitHub repo to your local drive,run the following in the VSCode command-line terminal
 - Intialize npm
 - $ `npm init -y`
 - Create a .gitignore file in the root and add node_modules to this file
