@@ -17,15 +17,15 @@ https://github.com/ktrnthsnr/ecommerce-retail
 - Once invoking the app, `npm start`, Node.js will start the Express.js server and Sequelize will sync with the MySQL database, and create and seed the tables.  
 - A walkthrough link under Usage below will demonstrate the API endpoints for each of the routes created. The Insomnia browser will render the JSON content based upon the Sequelize models, connecting to the backend tables via the API endpoints.
 
-- The server-side work included:
-- updated js config to sync Sequelize models to the database, when Express server is instantiated
-- created API routes for various query selections to the Express server
-- routes included GET, POST, PUT, DELETE routes to select all and single selections from the  category, product, and tags tables, then tested the API endpoints via Insomnia
-- configured dotenv to store sensitive db connection data in environment variables
-- utilized Sequelize and mysql2 to connect the Express.js to the MySQL database
-- added a create database script
-- added the Sequelize model js scripts that build each table 
-- added foreign key relationships through Sequelize reference constructions
+### The server-side work included:
+  - updated js config to sync Sequelize models to the database, when Express server is instantiated
+  - created API routes for various query selections to the Express server
+  - routes included GET, POST, PUT, DELETE routes to select all and single selections from the  category, product, and tags tables, then tested the API endpoints via Insomnia
+  - configured dotenv to store sensitive db connection data in environment variables
+  - utilized Sequelize and mysql2 to connect the Express.js to the MySQL database
+  - added a create database script
+  - added the Sequelize model js scripts that build each table 
+  - added foreign key relationships through Sequelize reference constructions
 
 
 ## Installations

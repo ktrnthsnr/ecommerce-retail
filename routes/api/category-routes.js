@@ -5,7 +5,7 @@ const { Category, Product } = require('../../models');
 // =============================================================
 // ---  The `/api/categories` endpoint
 
-// --------------------- working test ---------------------  //
+// --------------------- is it working test ---------------------  //
         // router.get('/', (req, res) => {
         //   // find all categories
         //   // res.json("hello"); // router test    
@@ -14,18 +14,35 @@ const { Category, Product } = require('../../models');
         //     res.json(dbCategory);
         //   });
         // });
-// --------------------- ---------------------  //
 
+// ----------------- w/o if no match & err catch --------- //
+    // // find all categories, including its associated Products
+    // // -- with foreign key contraints
+    // router.get('/', (req, res) => {
+    //     Category.findAll({
+    //       include: {model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}
+    //     }).then(dbCategory => {
+    //       // console.log(dbCategory);
+    //       res.json(dbCategory);
+    //     });
+    //   });
+
+  
 // find all categories, including its associated Products
 // -- with foreign key contraints
 router.get('/', (req, res) => {
-    Category.findAll({
-      include: {model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}
-    }).then(dbCategory => {
-      // console.log(dbCategory);
-      res.json(dbCategory);
-    });
-  });
+  Category.findAll({include: {model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}
+  }) 
+  .then(dbCategory => {
+    if(!dbCategory) {    // if no match
+      res.status(404).json({message: "There were no results for this query."});
+        return;
+    }
+    // render JSON
+    res.json(dbCategory);
+  }) 
+  .catch(err => {console.log(err);res.status(500).json(err);})   // catch error
+});
 
 
 router.get('/:id', (req, res) => {
