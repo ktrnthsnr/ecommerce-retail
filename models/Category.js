@@ -18,10 +18,10 @@ Category.init(
     },
     category_name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [30]
-      }
+      allowNull: false
+      // validate: {
+      //   len: [30]
+      // }
     }
   },
     // -- SQL table template

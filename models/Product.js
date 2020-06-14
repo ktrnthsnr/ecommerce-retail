@@ -21,10 +21,11 @@ Product.init(
     },      
     product_name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [30]
-      }
+      allowNull: false
+      // ,
+      // validate: {
+      //   len: [30]
+      // }
     },
     price: {
       type: DataTypes.DECIMAL,

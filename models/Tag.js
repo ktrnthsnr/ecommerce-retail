@@ -18,12 +18,13 @@ Tag.init(
     },
     tag_name: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: [30]
-      }
+      allowNull: true
+      // ,
+      // validate: {
+      //   len: [30]
     }
   },
+
   // -- SQL table template
   // CREATE TABLE tag (
   //   id INTEGER NOT NULL AUTO_INCREMENT,
