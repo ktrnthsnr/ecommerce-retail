@@ -16,7 +16,7 @@ const { Category, Product } = require('../../models');
         //   });
         // });
 
-// ----------------- w/o if no match & err catch --------- //
+// ----------------- test w/o if no match & err catch --------- //
     // // find all categories, including its associated Products
     // // -- with foreign key contraints
     // router.get('/', (req, res) => {
@@ -29,7 +29,7 @@ const { Category, Product } = require('../../models');
     //   });
 
   
-// find all categories, including its associated Products
+// ============== VIEW ALL categories, including its associated Products ==============
 // -- with foreign key contraints
     // Insomnia API endpoint test, GET http://localhost:3001/api/categories
 router.get('/', (req, res) => {
@@ -47,7 +47,8 @@ router.get('/', (req, res) => {
   .catch(err => {console.log(err);res.status(500).json(err);})   // catch error
 });
 
-// find one category by its `id` value, include its associated Products
+
+// ============== VIEW ONE category by its `id` value, include its associated Products ==============
   // Insomnia test, GET http://localhost:3001/api/categories/5
 router.get('/:id', (req, res) => {  
   Category.findOne({
@@ -66,7 +67,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-// create a new category
+// ============== CREATE a NEW category ==============
   // Insomnia test, POST  http://localhost:3001/api/categories
   /* req.body should look like this...
     {
@@ -98,7 +99,7 @@ router.get('/:id', (req, res) => {
           // +----+---------------+
 
 
-// update a category by its `id` value
+// ============== UPDATE a category by its `id` value ==============
     // Insomnia test, PUT http://localhost:3001/api/categories/6
     /* req.body should look like this...
         {
@@ -136,7 +137,7 @@ router.put('/:id', (req, res) => {
         // |  6 | Belts         |
         // +----+---------------+
 
-// delete a category by its `id` value
+// ============== DELETE a category by its `id` value ==============
     // Insomnia test, DELETE http://localhost:3001/api/categories/6
     //  req.body should look like this...
     // {

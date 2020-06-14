@@ -5,7 +5,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // =============================================================
 // The `/api/products` endpoint
 
-// ==============  get all products ==============
+// ==============  VIEW ALL products ==============
   // find all products, including its associated Category and Tag data
   // Insomnia browser test, GET http://localhost:3001/api/products
 router.get('/', (req, res) => {  
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 });
 
 
-// ============== get one product ==============
+// ============== VIEW ONE product ==============
   // find a single product by its `id`, including its associated Category and Tag data
   // Insomnia test URL:  GET http://localhost:3001/api/products/2
 router.get('/:id', (req, res) => {
@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
           // }
 
 
-// ============== create new product ==============
+// ============== CREATE NEW product ==============
   // Insomnia URL test: POST http://localhost:3001/api/products
   /* req.body should look like this...
    {
@@ -113,7 +113,7 @@ router.post('/', (req, res) => {
       // +----+---------------------------------------+-------+-------+-------------+
 
 
-// ============== update product ==============
+// ============== UPDATE product ==============
   // Insomnia URL test: PUT http://localhost:3001/api/products/6
     /* req.body should look like this...
     {
@@ -178,7 +178,7 @@ router.post('/', (req, res) => {
       // +----+---------------------------------------+-------+-------+-------------+
 
 
-// ============== delete one product by its `id` value ==============
+// ============== DELETE one product by its `id` value ==============
     // Insomnia URL test: DELETE http://localhost:3001/api/products/6
     /* req.body should look like this...
       {
