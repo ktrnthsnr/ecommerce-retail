@@ -43,7 +43,7 @@ Product.init(
     },
     category_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         // foreign key reference
         references: {
           model: 'category',
@@ -57,7 +57,7 @@ Product.init(
     //   product_name VARCHAR(30) NOT NULL,
     //   price DECIMAL NOT NULL, 
     //   stock INTEGER NOT NULL, 
-    //   category_id INT NOT NULL,
+    //   category_id INT NULL,
     //   PRIMARY KEY(id),
     //   FOREIGN KEY(category_id)
     //       REFERENCES category(id)
@@ -68,7 +68,7 @@ Product.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'product'
   }
 );
 

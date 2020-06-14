@@ -5,38 +5,78 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // =============================================================
 // The `/api/products` endpoint
 
-// get all products
-router.get('/api/Products', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
-  Product.findAll({}).then(dbProduct => {
-    res.json(dbProduct);
-  });
-});
-
-// get one product
-router.get('/api/Product/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
-  Product.findOne({
-    where: {
-      id: req.params.id
+// ==============  get all products ==============
+  // find all products, including its associated Category and Tag data
+  // Insomnia browser test, GET http://localhost:3001/api/products
+router.get('/', (req, res) => {  
+  Product.findAll({
+    include: {model: Category, attributes: ['id', 'category_name']}
+  }) 
+  .then(dbProduct => {
+    if(!dbProduct) {    // if no match
+      res.status(404).json({message: "There were no results for this query."});
+      return;
     }
-  }).then(dbProduct => {
+    // render JSON
     res.json(dbProduct);
-  });
+  }) 
+  .catch(err => {console.log(err);res.status(500).json(err);})   // catch error
 });
 
-// create new product
-router.post('/api/Product', (req, res) => {
+
+// ============== get one product ==============
+  // find a single product by its `id`, including its associated Category and Tag data
+  // Insomnia test URL:  GET http://localhost:3001/api/products/2
+router.get('/:id', (req, res) => {
+  Product.findOne({
+    where: {id: req.params.id}
+    ,include: {model: Category, attributes: ['id', 'category_name']}
+    ,include: {model: Tag, attributes: ['id', 'tag_name'], through: ProductTag, as: 'products'}
+  })
+  .then(dbProduct => {
+    if(!dbProduct) {    // if no match
+      res.status(404).json({message: "There were no results for this query."});
+      return;
+    }
+    // render JSON
+    res.json(dbProduct);
+  }) 
+  .catch(err => {console.log(err);res.status(500).json(err);})   // catch error
+});
+
+// -- result
+          // {
+          //   "id": 2,
+          //   "product_name": "Running Sneakers",
+          //   "price": 90,
+          //   "stock": 25,
+          //   "category_id": 5,
+          //   "products": [
+          //     {
+          //       "id": 6,
+          //       "tag_name": "white",
+          //       "product_tag": {
+          //         "id": 4,
+          //         "product_id": 2,
+          //         "tag_id": 6
+          //       }
+          //     }
+          //   ]
+          // }
+
+
+// ============== create new product ==============
+  // Insomnia URL test: POST http://localhost:3001/api/products
   /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
+   {
+      "product_name": "Baseball",
+      "price": 200.00,
+      "stock": 3,
+      "tagIds": [1, 2, 3, 4]
     }
   */
+router.post('/', (req, res) => {
+  // -- starter code
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -59,9 +99,32 @@ router.post('/api/Product', (req, res) => {
     });
 });
 
-// update product
-router.put('/api/Product/:id', (req, res) => {
-  // update product data
+// result, ID 6 inserted
+      // mysql> select * from product;
+      // +----+---------------------------------------+-------+-------+-------------+
+      // | id | product_name                          | price | stock | category_id |
+      // +----+---------------------------------------+-------+-------+-------------+
+      // |  1 | Plain T-Shirt                         |    15 |    14 |           1 |
+      // |  2 | Running Sneakers                      |    90 |    25 |           5 |
+      // |  3 | Branded Baseball Hat                  |    23 |    12 |           4 |
+      // |  4 | Top 40 Music Compilation Vinyl Record |    13 |    50 |           3 |
+      // |  5 | Cargo Shorts                          |    30 |    22 |           2 |
+      // |  6 | Baseball                              |   200 |     3 |        NULL |
+      // +----+---------------------------------------+-------+-------+-------------+
+
+
+// ============== update product ==============
+  // Insomnia URL test: PUT http://localhost:3001/api/products/6
+    /* req.body should look like this...
+    {
+        "product_name": "Baseball Related",
+        "price": 201.00,
+        "stock": 4,
+        "tagIds": [1, 2, 3, 4]
+      }
+    */
+ router.put('/:id', (req, res) => {
+  // update product data -- starter code
   Product.update(req.body, {
     where: {
       id: req.params.id,
@@ -101,8 +164,29 @@ router.put('/api/Product/:id', (req, res) => {
     });
 });
 
-router.delete('/api/Product/:id', (req, res) => {
-  // delete one product by its `id` value
+// result, updated ID 6's data
+      // mysql> select * from product;
+      // +----+---------------------------------------+-------+-------+-------------+
+      // | id | product_name                          | price | stock | category_id |
+      // +----+---------------------------------------+-------+-------+-------------+
+      // |  1 | Plain T-Shirt                         |    15 |    14 |           1 |
+      // |  2 | Running Sneakers                      |    90 |    25 |           5 |
+      // |  3 | Branded Baseball Hat                  |    23 |    12 |           4 |
+      // |  4 | Top 40 Music Compilation Vinyl Record |    13 |    50 |           3 |
+      // |  5 | Cargo Shorts                          |    30 |    22 |           2 |
+      // |  6 | Baseball Related                      |   201 |     4 |           4 |
+      // +----+---------------------------------------+-------+-------+-------------+
+
+
+// ============== delete one product by its `id` value ==============
+    // Insomnia URL test: DELETE http://localhost:3001/api/products/6
+    /* req.body should look like this...
+      {
+          "product_id": 6
+        }
+    */
+router.delete('/:id', (req, res) => {
+  
   Product.destroy({
     where: {
       id: req.params.id
@@ -112,4 +196,19 @@ router.delete('/api/Product/:id', (req, res) => {
   });
 });
 
+// result, deleted ID 6
+    // mysql> select * from product;
+    // +----+---------------------------------------+-------+-------+-------------+
+    // | id | product_name                          | price | stock | category_id |
+    // +----+---------------------------------------+-------+-------+-------------+
+    // |  1 | Plain T-Shirt                         |    15 |    14 |           1 |
+    // |  2 | Running Sneakers                      |    90 |    25 |        NULL |
+    // |  3 | Branded Baseball Hat                  |    23 |    12 |           4 |
+    // |  4 | Top 40 Music Compilation Vinyl Record |    13 |    50 |           3 |
+    // |  5 | Cargo Shorts                          |    30 |    22 |           2 |
+    // |  6 | Baseball Related                      |   201 |     4 |           4 |
+    // |  7 | Baseball                              |   200 |     3 |        NULL |
+
+
+    // export
 module.exports = router;

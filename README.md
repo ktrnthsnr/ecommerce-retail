@@ -69,14 +69,15 @@ https://github.com/ktrnthsnr/ecommerce-retail
 - Start using the db
 -   mysql> `USE ecommerce_db;`
 
-- Create and seed the tables for testing purposes in the terminal
+- Add content into the tables provided from /seeds/*.js files.
 -   $ `npm run seed`
 - Validate tables were created
 -  mysql>`describe category;describe product;describe product_tag;describe tag;`
 - Validate tables were populated
 -  mysql>`select * from category;select * from product;select * from product_tag;select * from tag;`
 
-- Run the application locally, to start the Express.js, sync w/Sequelize, and also create and seed the tables.
+- If you are ready to run the application locally, run the following. This will start the Express server, sync the Sequelize ORM models to the mysql database and if not seeded, will populate the tables' rows. It will not replace already seeded tables.
+- Start the application:
 -   $ `npm start` or $ `node server.js`
 
 - Validate: View all rows within the Categories table, through a sample API endpoint. Open the Insomnia debug tool, enter a GET URL, `http://localhost:3001/api/categories`

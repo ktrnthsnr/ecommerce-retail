@@ -3,7 +3,7 @@ const { Category, Product } = require('../../models');
 
 // Category Routes
 // =============================================================
-// ---  The `/api/categories` endpoint
+//  The `/api/categories` endpoint
 
 // --------------------- tests ---------------------  //
         // router.get('/', (req, res) => {
@@ -53,7 +53,7 @@ router.get('/:id', (req, res) => {
   Category.findOne({
     where: {id: req.params.id},
     include: {model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}
-  }) 
+  })
   .then(dbCategory => {
     if(!dbCategory) {    // if no match
       res.status(404).json({message: "There were no results for this query."});
@@ -140,7 +140,7 @@ router.put('/:id', (req, res) => {
     // Insomnia test, DELETE http://localhost:3001/api/categories/6
     //  req.body should look like this...
     // {
-    //   "category_name": "Belts"
+    //   "category_id": 6
     // }
     
 router.delete('/:id', (req, res) => {  

@@ -18,7 +18,7 @@ ProductTag.init(
     },
     product_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         // foreign key reference
         references: {
           model: 'product',
@@ -27,7 +27,7 @@ ProductTag.init(
     },
     tag_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       // foreign key reference
       references: {
         model: 'tag',
@@ -38,8 +38,8 @@ ProductTag.init(
       // -- SQL table template
       // CREATE TABLE product_tag (
       //   id INTEGER NOT NULL AUTO_INCREMENT,
-      //   product_id INT NOT NULL,
-      //   tag_id INT NOT NULL,
+      //   product_id NOT NULL,
+      //   tag_id INT NULL,
       //   PRIMARY KEY(id),
       //   FOREIGN KEY (product_id)
       //       REFERENCES product(id),
