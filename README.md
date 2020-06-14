@@ -4,7 +4,6 @@ This exercise focuses on backend and middleware: Sequelize object relational map
 ## GitHub repository
 https://github.com/ktrnthsnr/ecommerce-retail
 
-
 ## Table of Contents
 * [Description](#description)
 * [Installations](#installations)
@@ -14,7 +13,7 @@ https://github.com/ktrnthsnr/ecommerce-retail
 
 ## Description
 - Given a working Express.js API, the work for this e-commerce back-end project involves using MySQL2 and Sequelize models to interact with the MySQL database. 
-- Once invoking the app, `npm start`, Node.js will start the Express.js server and Sequelize will sync with the MySQL database, and create and seed the tables.  
+- Once invoking the app, `npm start`, Node.js will start the Express.js server and Sequelize will sync its models with the MySQL database, and create and seed the tables.
 - A walkthrough link under Usage below will demonstrate the API endpoints for each of the routes created. The Insomnia browser will render the JSON content based upon the Sequelize models, connecting to the backend tables via the API endpoints.
 
 ### The server-side work included:
@@ -56,7 +55,6 @@ https://github.com/ktrnthsnr/ecommerce-retail
 - `npm install body-parser --save`
 - Install Insomnia locally to test the GET, POST, PUT, and DELETE API endpoints per the routes.
 
-
 ## Usage
 - Within the VSCode terminal, start MySQL
 -   $ `mysql -u root -p`
@@ -81,10 +79,14 @@ https://github.com/ktrnthsnr/ecommerce-retail
 - Start the application:
 -   $ `npm start` or $ `node server.js`
 
-- Validate: View all rows within the Categories table, through a sample API endpoint. Open the Insomnia debug tool, enter a GET URL, `http://localhost:3001/api/categories`
+- Validate: View all rows within the Categories table, through a sample API endpoint. Open the Insomnia debug tool, enter a GET URL, `http://localhost:3001/api/categories`.  Other validation endpoints for all CRUD queries are listed in the routes files.
 
-- A walkthrough of how the application is invoked is included here, showing how the database and tables are created, rows seeded, and then validated at a route API endpoint.  The Category table is used as the example:
-https://drive.google.com/file/d/1jCFMWTOneYsJO5n4JwkTgSkcd4Nhx8xB/view
+- A walkthrough of how the Node.js Sequelize application works, from creating the mysql database and tables, to seeding and testing the GET, POST, PULL, and DELETE API routes via the Insomnia testing tool, (ran out of time on the delete route)
+https://drive.google.com/file/d/1IcyrSXyOH0As0uq-q9dNulYwxukrSoSX/view
+- The last bit of the  Screencastify walkthrough, the delete route, is included here https://drive.google.com/file/d/1RoKgs35hDoAKzQlkdaZBOlB3tPnM0x14/view
+
+- Insomnia GET route sample
+![Insomnia GET sample](./img/Insomnia-GETAllTags.jpg "Insomnia GET sample")
 
 ## Technology
 MySQL, MySQL2, Express.js, Sequelize, Node.js, JavaScript, npm, HTML, CSS, dotenv
