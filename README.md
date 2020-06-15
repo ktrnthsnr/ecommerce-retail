@@ -21,7 +21,6 @@ https://github.com/ktrnthsnr/ecommerce-retail
   - created API routes for various query selections to the Express server
   - filled out routes creating RESTful CRUD operations, included GET, POST, PUT, DELETE routes to create, select, update and delete rows on these tables: category, product, and tags
   - then tested the routes using the debugging Insomnia tool as http API endpoints, rendering the URLs to view the database results, and for entering new content into the database, added JSON test content for the POST, PUT, and DELETE endpoints
-  - configured dotenv to store sensitive db connection data in environment variables
   - utilized Sequelize and mysql2 to connect the Express.js to the MySQL database
   - added a create database script
   - added the Sequelize model js scripts that build each table 
